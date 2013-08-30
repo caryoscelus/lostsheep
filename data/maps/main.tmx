@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="48" height="48" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="ph-tiles" tilewidth="32" tileheight="32">
+  <image source="ph-tiles.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="floor 0" width="48" height="48">
+  <data encoding="base64" compression="zlib">
+   eJzt1DEOgCAQRcGV+x/a1kKJWMj+ZIppluZByI6qGrR3PNjdtdJ+N9/d9rZ/Zd5Ncv/sn6f0fznrYvb2Kf3Ju+d6h8TdDwAAAAAAAPznBLC0EeM=
+  </data>
+ </layer>
+</map>
