@@ -25,6 +25,8 @@
 
 package lostsheep;
 
+import lostsheep.creatures.Player;
+
 import chlorophytum.story.*;
 import chlorophytum.story.view.StoryStage;
 import chlorophytum.map.view.ChloroMapStage;
@@ -97,7 +99,9 @@ public class MapScreen implements Screen, StoryScreen {
     }
     
     public void update (float dt) {
-        mapStage.setMap(LostSheepGame.instance().player.onMap);
+        Player pl = LostSheepGame.instance().player;
+        mapStage.setMap(pl.onMap);
+        mapStage.setPosition(pl.position);
         mapStage.act(dt);
         
         if (toShowStory) {
