@@ -25,51 +25,65 @@
 
 package lostsheep;
 
-import chlorophytum.Scripting;
-import chlorophytum.UiManager;
-import chlorophytum.credits.CreditsScreen;
-import chlorophytum.util.Invokable;
+import chlorophytum.map.ChloroMap;
+import chlorophytum.story.*;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.*;
 
-/**
- * Main class, not much interesting actually..
- */
-public class LostSheep extends Game {
-    CreditsScreen creditsScreen = new CreditsScreen();
-    MapScreen mapScreen = new MapScreen();
+public class MapScreen implements Screen, StoryScreen {
+    ChloroMap map;
     
-    @Override
-    public void create () {
-        Scripting.init();
-        UiManager.instance().init();
-        
-        setScreen(mapScreen);
+    boolean inited = false;
+    
+    public void init () {
+        inited = true;
     }
     
     @Override
-    public void render () {
-        getScreen().render(Gdx.graphics.getDeltaTime());
+    public void show () {
+        if (!inited) {
+            init();
+        }
+    }
+    
+    @Override
+    public void hide () {
+    }
+    
+    @Override
+    public void render (float dt) {
+        update(dt);
+        
+        Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1);
+        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
     }
     
     @Override
     public void resize (int width, int height) {
-        getScreen().resize(width, height);
     }
     
     @Override
     public void pause () {
-        getScreen().pause();
     }
     
     @Override
     public void resume () {
-        getScreen().resume();
     }
     
     @Override
     public void dispose () {
-        getScreen().dispose();
+        map.dispose();
+    }
+    
+    public void update (float dt) {
+        
+    }
+    
+    @Override
+    public void showStory (StoryDialog dialogue) {
+    }
+    
+    @Override
+    public void hideStory () {
     }
 }

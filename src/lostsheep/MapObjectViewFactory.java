@@ -25,51 +25,24 @@
 
 package lostsheep;
 
-import chlorophytum.Scripting;
-import chlorophytum.UiManager;
-import chlorophytum.credits.CreditsScreen;
-import chlorophytum.util.Invokable;
+import lostsheep.creatures.view.PersonView;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
+public class MapObjectViewFactory {
+    private static MapObjectViewFactory _instance;
 
-/**
- * Main class, not much interesting actually..
- */
-public class LostSheep extends Game {
-    CreditsScreen creditsScreen = new CreditsScreen();
-    MapScreen mapScreen = new MapScreen();
-    
-    @Override
-    public void create () {
-        Scripting.init();
-        UiManager.instance().init();
-        
-        setScreen(mapScreen);
+    public static MapObjectViewFactory instance () {
+        if (_instance == null) {
+            _instance = new MapObjectViewFactory();
+        }
+        return _instance;
     }
-    
-    @Override
-    public void render () {
-        getScreen().render(Gdx.graphics.getDeltaTime());
-    }
-    
-    @Override
-    public void resize (int width, int height) {
-        getScreen().resize(width, height);
-    }
-    
-    @Override
-    public void pause () {
-        getScreen().pause();
-    }
-    
-    @Override
-    public void resume () {
-        getScreen().resume();
-    }
-    
-    @Override
-    public void dispose () {
-        getScreen().dispose();
+
+    public PersonView personView = new PersonView();
+
+    /**
+     * Init!
+     */
+    public void init () {
+        personView.init();
     }
 }

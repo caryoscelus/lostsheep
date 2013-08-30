@@ -23,53 +23,18 @@
  *  for the parts of Clojure used as well as that of the covered work.}
  */
 
-package lostsheep;
+package lostsheep.creatures.view;
 
-import chlorophytum.Scripting;
-import chlorophytum.UiManager;
-import chlorophytum.credits.CreditsScreen;
-import chlorophytum.util.Invokable;
+import chlorophytum.mapobject.*;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.*;
 
-/**
- * Main class, not much interesting actually..
- */
-public class LostSheep extends Game {
-    CreditsScreen creditsScreen = new CreditsScreen();
-    MapScreen mapScreen = new MapScreen();
-    
+public class PersonView implements MapObjectView {
     @Override
-    public void create () {
-        Scripting.init();
-        UiManager.instance().init();
-        
-        setScreen(mapScreen);
+    public void init () {
     }
     
     @Override
-    public void render () {
-        getScreen().render(Gdx.graphics.getDeltaTime());
-    }
-    
-    @Override
-    public void resize (int width, int height) {
-        getScreen().resize(width, height);
-    }
-    
-    @Override
-    public void pause () {
-        getScreen().pause();
-    }
-    
-    @Override
-    public void resume () {
-        getScreen().resume();
-    }
-    
-    @Override
-    public void dispose () {
-        getScreen().dispose();
+    public void render (SpriteBatch batch, MapObjectViewData data) {
     }
 }
