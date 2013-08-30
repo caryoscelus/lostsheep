@@ -31,11 +31,24 @@ import lostsheep.creatures.view.PersonViewData;
 import chlorophytum.mapobject.MapObject;
 
 public class Person extends MapObject {
+    protected float speed = 1;
+    
     public Person () {
         super();
         viewData = new PersonViewData(this);
         view = MapObjectViewFactory.instance().personView;
     }
     
-    
+    @Override
+    public void update (float dt) {
+        super.update(dt);
+        
+        if (move.x != 0 || move.y != 0) {
+            int angle = ((int) move.angle()/45) * 45;
+            float dx = (float) Math.cos(angle*Math.PI/180) * dt * speed;
+            float dy = (float) Math.sin(angle*Math.PI/180) * dt * speed;
+            
+            move(dx, dy);
+        }
+    }
 }

@@ -33,6 +33,7 @@ import chlorophytum.map.view.ChloroMapStage;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.Input.Keys;
 
 public class MapScreen implements Screen, StoryScreen {
     protected final float TILES_NX = 25;
@@ -98,7 +99,30 @@ public class MapScreen implements Screen, StoryScreen {
     public void dispose () {
     }
     
+    public void processInput (float dt) {
+        float mdx = 0, mdy = 0;
+        if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+            mdx += -1*dt;
+        }
+        if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+            mdx += 1*dt;
+        }
+        if (Gdx.input.isKeyPressed(Keys.UP)) {
+            mdy += 1*dt;
+        }
+        if (Gdx.input.isKeyPressed(Keys.DOWN)) {
+            mdy += -1*dt;
+        }
+        
+        Player pl = LostSheepGame.instance().player;
+        pl.move.x = mdx;
+        pl.move.y = mdy;
+        pl.update(dt);
+    }
+    
     public void update (float dt) {
+        processInput(dt);
+        
         Player pl = LostSheepGame.instance().player;
         mapStage.setMap(pl.onMap);
         mapStage.setPosition(pl.position);
