@@ -27,14 +27,29 @@ package lostsheep.creatures.view;
 
 import chlorophytum.mapobject.*;
 
+import com.badlogic.gdx.*;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.*;
 
 public class PersonView implements MapObjectView {
+    protected Animation defaultSprite;
+    
     @Override
     public void init () {
+        Texture texture = new Texture("data/maps/ph-creature.png");
+        TextureRegion[][] regions = TextureRegion.split(texture, 32, 32);
+        defaultSprite = new Animation(0, regions[0][0]);
     }
     
     @Override
     public void render (SpriteBatch batch, MapObjectViewData data) {
+        PersonViewData pdata = (PersonViewData) data;
+        
+        final Vector2 position = pdata.origin.position;
+        
+        batch.begin();
+        batch.draw(defaultSprite.getKeyFrame(pdata.tc), position.x, position.y, 1, 1);
+        batch.end();
     }
 }

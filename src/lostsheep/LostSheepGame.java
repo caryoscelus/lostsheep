@@ -41,6 +41,6 @@ public class LostSheepGame {
     
     public void init () {
         player = new Player();
-        player.moveTo("data/maps/main.tmx", 50, 50);
+        player.moveTo("data/maps/main.tmx", 0, 0);
     }
 }
