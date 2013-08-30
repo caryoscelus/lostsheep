@@ -25,14 +25,12 @@
 
 package lostsheep;
 
-import chlorophytum.map.ChloroMap;
 import chlorophytum.story.*;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.graphics.*;
 
 public class MapScreen implements Screen, StoryScreen {
-    ChloroMap map;
-    
     boolean inited = false;
     
     public void init () {
@@ -72,7 +70,6 @@ public class MapScreen implements Screen, StoryScreen {
     
     @Override
     public void dispose () {
-        map.dispose();
     }
     
     public void update (float dt) {
