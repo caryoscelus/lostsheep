@@ -37,8 +37,10 @@ public class LostSheepGame {
         return _instance;
     }
     
+    public Player player;
+    
     public void init () {
-        Player player = new Player();
+        player = new Player();
         player.moveTo("data/maps/main.tmx", 50, 50);
     }
 }
