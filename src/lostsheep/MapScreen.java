@@ -26,6 +26,7 @@
 package lostsheep;
 
 import chlorophytum.story.*;
+import chlorophytum.story.view.StoryStage;
 import chlorophytum.map.view.ChloroMapStage;
 
 import com.badlogic.gdx.*;
@@ -38,12 +39,18 @@ public class MapScreen implements Screen, StoryScreen {
     protected final float TILE_SIZE = 32;
     
     protected ChloroMapStage mapStage;
+    protected StoryStage storyStage;
+    protected boolean toShowStory = false;
+    
     protected boolean inited = false;
     
     public void init () {
         inited = true;
+        
         mapStage = new ChloroMapStage();
         mapStage.init(TILE_SIZE, TILES_NX, TILES_NY);
+        
+        storyStage = new StoryStage();
     }
     
     @Override
@@ -65,6 +72,10 @@ public class MapScreen implements Screen, StoryScreen {
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
         
         mapStage.draw();
+        
+        if (toShowStory) {
+            storyStage.draw();
+        }
     }
     
     @Override
@@ -85,6 +96,11 @@ public class MapScreen implements Screen, StoryScreen {
     
     public void update (float dt) {
         mapStage.setMap(LostSheepGame.instance().player.onMap);
+        mapStage.act(dt);
+        
+        if (toShowStory) {
+            storyStage.act(dt);
+        }
     }
     
     @Override
