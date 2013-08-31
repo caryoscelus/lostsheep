@@ -43,7 +43,6 @@ public class MapScreen implements Screen, StoryScreen {
     
     protected ChloroMapStage mapStage;
     protected StoryStage storyStage;
-    protected boolean toShowStory = false;
     
     protected boolean inited = false;
     
@@ -56,6 +55,13 @@ public class MapScreen implements Screen, StoryScreen {
         storyStage = new StoryStage();
         
         MapObjectViewFactory.instance().init();
+        
+        Story.instance().screen = this;
+        
+        InputMultiplexer inputMultiplexer = new InputMultiplexer();
+        inputMultiplexer.addProcessor(storyStage);
+        inputMultiplexer.addProcessor(mapStage);
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
     
     @Override
@@ -78,7 +84,7 @@ public class MapScreen implements Screen, StoryScreen {
         
         mapStage.draw();
         
-        if (toShowStory) {
+        if (storyStage.show) {
             storyStage.draw();
         }
     }
@@ -128,13 +134,15 @@ public class MapScreen implements Screen, StoryScreen {
         mapStage.setPosition(pl.position);
         mapStage.act(dt);
         
-        if (toShowStory) {
+        if (storyStage.show) {
             storyStage.act(dt);
         }
     }
     
     @Override
     public void showStory (StoryDialog dialogue) {
+        storyStage.show = true;
+        storyStage.setupUi(dialogue);
     }
     
     @Override
