@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="48" height="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="ph-tiles" tilewidth="32" tileheight="32">
+  <image source="ph-tiles.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="floor" width="48" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzt0NEJADAIA9HS/YfuBoUa9Qw04P871/pz2A4etah3Qk+Vvauly1/RQtgzO2i/0kGb1Q7aqnbQRqWDdqkNtEltoD3q/10abqNtUfdk/+tob9Q9xZ8xV3e3v3KO5tvcvH89OwTeBU0=
+  </data>
+ </layer>
+ <layer name="walls" width="48" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzlV1sKwCAM0/tfel+FMaatNTXtFhBkFpNYH2tr/0B3NhZQOhh+InmivZzMeYQX1p5F+GCeN8GOjwz6Bas+Mmm/w+pjFpPhvtfm94554nbwxqHxovVb8jUbf35H6V+FhXfktQ/6Hh5PHHL9Ne7s+1/jrn7/MLGyLpk8ePKZQT+i3mAAdX6q///LvFE4VUtWrn8tOtjvwVdwAXIvAJM=
+  </data>
+ </layer>
+ <objectgroup name="places" width="48" height="25">
+  <object name="down" x="929" y="380" width="64" height="40">
+   <properties>
+    <property name="auto" value="true"/>
+   </properties>
+  </object>
+  <object name="cannon" x="1216" y="377" width="38" height="45">
+   <properties>
+    <property name="auto" value="true"/>
+   </properties>
+  </object>
+  <object name="control" x="609" y="377" width="29" height="48">
+   <properties>
+    <property name="auto" value="true"/>
+   </properties>
+  </object>
+  <object name="spawn-player" x="295" y="584" width="25" height="27"/>
+ </objectgroup>
+</map>
