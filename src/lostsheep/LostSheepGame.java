@@ -29,6 +29,8 @@ import lostsheep.creatures.Player;
 
 import chlorophytum.story.Story;
 
+import com.badlogic.gdx.*;
+
 public class LostSheepGame {
     private static LostSheepGame _instance;
     
@@ -45,6 +47,11 @@ public class LostSheepGame {
         Story.instance().init();
         
         player = new Player();
-        player.moveTo("data/maps/main.tmx", 0, 0);
+        player.moveTo("data/maps/deck.tmx");
+        com.badlogic.gdx.maps.MapObject spawn = player.onMap.getTiledObject("places", "spawn-player");
+        if (spawn != null) {
+            // fix this
+            player.move(spawn.getProperties().get("x", Integer.class)/32, spawn.getProperties().get("y", Integer.class)/32);
+        }
     }
 }
