@@ -32,7 +32,7 @@ import com.badlogic.gdx.Gdx;
 public class Player extends Person {
     @Override
     public void moved () {
-        for (com.badlogic.gdx.maps.MapObject object : onMap.checkObjectLayer("events", position)) {
+        for (com.badlogic.gdx.maps.MapObject object : onMap.checkObjectLayer("places", position)) {
             if (Boolean.parseBoolean(object.getProperties().get("auto", "", String.class))) {
                 processStory(object);
             }
