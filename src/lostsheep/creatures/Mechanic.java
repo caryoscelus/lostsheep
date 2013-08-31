@@ -23,48 +23,7 @@
  *  for the parts of Clojure used as well as that of the covered work.}
  */
 
-package lostsheep;
+package lostsheep.creatures;
 
-import lostsheep.creatures.*;
-
-import chlorophytum.story.Story;
-import chlorophytum.World;
-import chlorophytum.map.*;
-
-import com.badlogic.gdx.*;
-
-public class LostSheepGame {
-    private static LostSheepGame _instance;
-    
-    public static LostSheepGame instance () {
-        if (_instance == null) {
-            _instance = new LostSheepGame();
-        }
-        return _instance;
-    }
-    
-    public Player player;
-    public Mechanic mechanic;
-    
-    public ChloroMap deck;
-    
-    protected void spawn (Person person, ChloroMap map, String spawnName) {
-        person.moveTo(map);
-        com.badlogic.gdx.maps.MapObject spawn = map.getTiledObject("places", spawnName);
-        if (spawn != null) {
-            // fix this
-            person.move(spawn.getProperties().get("x", Integer.class)/32, spawn.getProperties().get("y", Integer.class)/32);
-        }
-    }
-    
-    public void init () {
-        Story.instance().init();
-        
-        deck = World.instance().loadMap("data/maps/deck.tmx");
-        
-        player = new Player();
-        mechanic = new Mechanic();
-        spawn(player, deck, "spawn-player");
-        spawn(mechanic, deck, "spawn-mechanic");
-    }
+public class Mechanic extends Person {
 }
