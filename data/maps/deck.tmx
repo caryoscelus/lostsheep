@@ -30,5 +30,9 @@
    </properties>
   </object>
   <object name="spawn-player" x="295" y="584" width="25" height="27"/>
+  <object name="spawn-mechanic" x="440" y="523" width="25" height="29"/>
+  <object name="spawn-scientist" x="532" y="617" width="20" height="24"/>
+  <object name="spawn-writer" x="154" y="374" width="24" height="26"/>
+  <object name="spawn-policeman" x="668" y="609" width="26" height="29"/>
  </objectgroup>
 </map>
