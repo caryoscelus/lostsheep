@@ -27,6 +27,8 @@ package lostsheep;
 
 import lostsheep.creatures.Player;
 
+import chlorophytum.story.Story;
+
 public class LostSheepGame {
     private static LostSheepGame _instance;
     
@@ -40,6 +42,8 @@ public class LostSheepGame {
     public Player player;
     
     public void init () {
+        Story.instance().init();
+        
         player = new Player();
         player.moveTo("data/maps/main.tmx", 0, 0);
     }

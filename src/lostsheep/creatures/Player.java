@@ -25,5 +25,26 @@
 
 package lostsheep.creatures;
 
+import chlorophytum.story.Story;
+
+import com.badlogic.gdx.Gdx;
+
 public class Player extends Person {
+    @Override
+    public void moved () {
+        for (com.badlogic.gdx.maps.MapObject object : onMap.checkObjectLayer("events", position)) {
+            if (Boolean.parseBoolean(object.getProperties().get("auto", "", String.class))) {
+                processStory(object);
+            }
+        }
+    }
+    
+    protected void processStory (com.badlogic.gdx.maps.MapObject object) {
+        String tname = object.getName();
+        if (!tname.isEmpty()) {
+            Story.instance().trigger(tname);
+        } else {
+            Gdx.app.log("story", "no story name here");
+        }
+    }
 }
