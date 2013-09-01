@@ -32,24 +32,26 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.*;
 
-public class PersonView implements MapObjectView {
-    protected Animation defaultSprite;
+public class PersonView extends MapObjectView {
+    protected static boolean inited = false;
+    protected static Animation defaultSprite;
     
-    @Override
-    public void init () {
-        Texture texture = new Texture("data/maps/ph-creature.png");
-        TextureRegion[][] regions = TextureRegion.split(texture, 32, 32);
-        defaultSprite = new Animation(0, regions[0][0]);
+    public static void init () {
+        if (!inited) {
+            Texture texture = new Texture("data/maps/ph-creature.png");
+            TextureRegion[][] regions = TextureRegion.split(texture, 32, 32);
+            defaultSprite = new Animation(0, regions[0][0]);
+        }
+        inited = true;
+    }
+    
+    public PersonView (MapObjectViewData d) {
+        super(d);
     }
     
     @Override
-    public void render (SpriteBatch batch, MapObjectViewData data) {
-        PersonViewData pdata = (PersonViewData) data;
-        
-        final Vector2 position = pdata.origin.position;
-        
-        batch.begin();
-        batch.draw(defaultSprite.getKeyFrame(pdata.tc), position.x, position.y, 1, 1);
-        batch.end();
+    public void draw (SpriteBatch batch, float parentAlpha) {
+        // this doesn't work yet because mapView offset is not counted
+        batch.draw(defaultSprite.getKeyFrame(((PersonViewData)data).tc), getX()*32, getY()*32, getWidth()*32, getHeight()*32);
     }
 }

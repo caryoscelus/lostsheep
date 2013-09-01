@@ -25,8 +25,7 @@
 
 package lostsheep.creatures;
 
-import lostsheep.MapObjectViewFactory;
-import lostsheep.creatures.view.PersonViewData;
+import lostsheep.creatures.view.*;
 
 import chlorophytum.mapobject.MapObject;
 
@@ -36,7 +35,7 @@ public class Person extends MapObject {
     public Person () {
         super();
         viewData = new PersonViewData(this);
-        view = MapObjectViewFactory.instance().personView;
+        view = new PersonView(viewData);
     }
     
     @Override

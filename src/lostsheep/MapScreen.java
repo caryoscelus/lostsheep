@@ -34,6 +34,7 @@ import chlorophytum.map.view.ChloroMapStage;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class MapScreen implements Screen, StoryScreen {
     protected final float TILES_NX = 25;
@@ -54,7 +55,7 @@ public class MapScreen implements Screen, StoryScreen {
         
         storyStage = new StoryStage();
         
-        MapObjectViewFactory.instance().init();
+        MapObjectViewFactory.init();
         
         Story.instance().screen = this;
         
@@ -79,7 +80,7 @@ public class MapScreen implements Screen, StoryScreen {
     public void render (float dt) {
         update(dt);
         
-        Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1);
+        Gdx.gl.glClearColor(0.0f, 0.5f, 0.0f, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
         
         mapStage.draw();

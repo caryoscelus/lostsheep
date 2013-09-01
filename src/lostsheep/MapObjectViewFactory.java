@@ -28,21 +28,10 @@ package lostsheep;
 import lostsheep.creatures.view.PersonView;
 
 public class MapObjectViewFactory {
-    private static MapObjectViewFactory _instance;
-
-    public static MapObjectViewFactory instance () {
-        if (_instance == null) {
-            _instance = new MapObjectViewFactory();
-        }
-        return _instance;
-    }
-
-    public PersonView personView = new PersonView();
-
     /**
      * Init!
      */
-    public void init () {
-        personView.init();
+    public static void init () {
+        PersonView.init();
     }
 }
