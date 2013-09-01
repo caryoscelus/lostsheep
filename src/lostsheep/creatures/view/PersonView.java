@@ -26,6 +26,7 @@
 package lostsheep.creatures.view;
 
 import chlorophytum.mapobject.*;
+import chlorophytum.map.view.ChloroMapStage;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.*;
@@ -51,7 +52,13 @@ public class PersonView extends MapObjectView {
     
     @Override
     public void draw (SpriteBatch batch, float parentAlpha) {
-        // this doesn't work yet because mapView offset is not counted
-        batch.draw(defaultSprite.getKeyFrame(((PersonViewData)data).tc), getX()*32, getY()*32, getWidth()*32, getHeight()*32);
+        ChloroMapStage mapStage = (ChloroMapStage) getStage();
+        if (mapStage != null) {
+            float x = getX()-mapStage.getCamPosition().x+mapStage.tilesNX/2;
+            float y = getY()-mapStage.getCamPosition().y+mapStage.tilesNY/2;
+            batch.draw(defaultSprite.getKeyFrame(((PersonViewData)data).tc), x*32, y*32, getWidth()*32, getHeight()*32);
+        } else {
+            Gdx.app.error("PersonView", "can't draw since not on ChloroMapStage!");
+        }
     }
 }

@@ -28,6 +28,7 @@ package lostsheep.creatures;
 import lostsheep.creatures.view.*;
 
 import chlorophytum.mapobject.MapObject;
+import chlorophytum.mapobject.MapObjectView;
 
 public class Person extends MapObject {
     protected float speed = 1;
@@ -35,7 +36,11 @@ public class Person extends MapObject {
     public Person () {
         super();
         viewData = new PersonViewData(this);
-        view = new PersonView(viewData);
+    }
+    
+    @Override
+    public MapObjectView newView () {
+        return new PersonView (viewData);
     }
     
     @Override
