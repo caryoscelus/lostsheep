@@ -51,7 +51,6 @@ public class PersonView extends MapObjectView {
     
     @Override
     public void draw (SpriteBatch batch, float parentAlpha) {
-        // TODO: get rid of 32
-        batch.draw(defaultSprite.getKeyFrame(((PersonViewData)data).tc), getX()*32, getY()*32, getWidth()*32, getHeight()*32);
+        batch.draw(defaultSprite.getKeyFrame(((PersonViewData)data).tc), getX(), getY(), getWidth(), getHeight());
     }
 }
