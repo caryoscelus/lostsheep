@@ -26,4 +26,7 @@
 package lostsheep.creatures;
 
 public class Mechanic extends Person {
+    public Mechanic () {
+        super("mechanic");
+    }
 }

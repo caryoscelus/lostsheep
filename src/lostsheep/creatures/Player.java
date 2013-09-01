@@ -30,6 +30,10 @@ import chlorophytum.story.Story;
 import com.badlogic.gdx.Gdx;
 
 public class Player extends Person {
+    public Player () {
+        super("player");
+    }
+    
     @Override
     public void moved () {
         for (com.badlogic.gdx.maps.MapObject object : onMap.checkObjectLayer("places", position)) {

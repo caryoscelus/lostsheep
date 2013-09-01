@@ -27,15 +27,19 @@ package lostsheep.creatures;
 
 import lostsheep.creatures.view.*;
 
+import chlorophytum.story.Story;
 import chlorophytum.mapobject.MapObject;
 import chlorophytum.mapobject.MapObjectView;
 
 public class Person extends MapObject {
     protected float speed = 1;
     
-    public Person () {
+    protected final String name;
+    
+    public Person (String nm) {
         super();
         viewData = new PersonViewData(this);
+        name = nm;
     }
     
     @Override
@@ -54,5 +58,10 @@ public class Person extends MapObject {
             
             move(dx, dy);
         }
+    }
+    
+    @Override
+    public void clicked () {
+        Story.instance().trigger(name);
     }
 }
