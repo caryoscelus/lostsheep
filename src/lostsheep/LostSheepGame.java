@@ -44,7 +44,10 @@ public class LostSheepGame {
     }
     
     public Player player;
-    public Mechanic mechanic;
+    public Person mechanic;
+    public Person scientist;
+    public Person writer;
+    public Person policeman;
     
     public ChloroMap deck;
     
@@ -63,8 +66,14 @@ public class LostSheepGame {
         deck = World.instance().loadMap("data/maps/deck.tmx");
         
         player = new Player();
-        mechanic = new Mechanic();
+        mechanic = new Person("mechanic");
+        scientist = new Person("scientist");
+        writer = new Person("writer");
+        policeman = new Person("policeman");
         spawn(player, deck, "spawn-player");
         spawn(mechanic, deck, "spawn-mechanic");
+        spawn(scientist, deck, "spawn-scientist");
+        spawn(writer, deck, "spawn-writer");
+        spawn(policeman, deck, "spawn-policeman");
     }
 }
