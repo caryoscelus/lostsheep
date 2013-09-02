@@ -128,7 +128,9 @@ public class MapScreen implements Screen, StoryScreen {
     }
     
     public void update (float dt) {
-        processInput(dt);
+        if (!storyStage.show) {
+            processInput(dt);
+        }
         
         Player pl = LostSheepGame.instance().player;
         mapStage.setMap(pl.onMap);
