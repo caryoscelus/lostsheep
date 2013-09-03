@@ -54,6 +54,7 @@ public class MapScreen implements Screen, StoryScreen {
         mapStage.init(TILE_SIZE, TILES_NX, TILES_NY);
         
         storyStage = new StoryStage();
+        storyStage.setContext(Story.instance().mainContext);
         
         MapObjectViewFactory.init();
         
@@ -137,18 +138,11 @@ public class MapScreen implements Screen, StoryScreen {
         mapStage.setPosition(pl.position);
         mapStage.act(dt);
         
-        if (storyStage.show) {
-            storyStage.act(dt);
-        }
+        storyStage.act(dt);
     }
     
     @Override
-    public void showStory (StoryDialog dialogue) {
-        storyStage.show = true;
-        storyStage.setupUi(dialogue);
-    }
-    
-    @Override
-    public void hideStory () {
+    public void showStory (StoryContext context) {
+        storyStage.setContext(context);
     }
 }
