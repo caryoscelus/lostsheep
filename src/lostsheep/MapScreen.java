@@ -54,7 +54,6 @@ public class MapScreen implements Screen, StoryScreen {
         mapStage.init(TILE_SIZE, TILES_NX, TILES_NY);
         
         storyStage = new StoryStage();
-        storyStage.setContext(Story.instance().activeContext());
         
         MapObjectViewFactory.init();
         
