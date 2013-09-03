@@ -106,11 +106,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (bind "_init" (ev "welcome"))
 
-(bindf "_dialogexit"
+(bindf "_update"
        (cond
+           (= story-stage :investigate-ship)
+             nil
            (and mechanic-know scientist-know writer-know policeman-know)
              (do
                  (runafter "after-meeting" )
                  (redef story-stage :investigate-ship))))
-
-(bindf "_update")
