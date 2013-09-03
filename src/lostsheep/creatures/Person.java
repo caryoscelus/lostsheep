@@ -62,6 +62,6 @@ public class Person extends MapObject {
     
     @Override
     public void clicked () {
-        Story.instance().trigger(name);
+        Story.instance().trigger(name, null);
     }
 }

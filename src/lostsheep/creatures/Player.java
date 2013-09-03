@@ -46,7 +46,7 @@ public class Player extends Person {
     protected void processStory (com.badlogic.gdx.maps.MapObject object) {
         String tname = object.getName();
         if (!tname.isEmpty()) {
-            Story.instance().trigger(tname);
+            Story.instance().trigger(tname, null);
         } else {
             Gdx.app.log("story", "no story name here");
         }
