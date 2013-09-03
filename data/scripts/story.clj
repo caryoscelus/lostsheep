@@ -6,21 +6,18 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; Mechanic ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (def mechanic-know false)
 
-(bind "mechanic"
-      (fn []
-          (cond
-              (not mechanic-know) (run "mechanic-contact")
-              :else (run "mechanic-empty"))))
+(bindf "mechanic"
+      (cond
+          (not mechanic-know) (run "mechanic-contact")
+          :else (run "mechanic-empty")))
 
 ;; First contact with mechanic
-(bind "mechanic-contact"
-      (fn []
-          (run (t "[Mechanic description]"
-                  (list
-                      (ln "..."
-                          (fn []
-                              (redef mechanic-know true)
-                              false)))))))
+(bindf "mechanic-contact"
+       (run (t "[Mechanic description]"
+               (list
+                   (lnf "..."
+                        (redef mechanic-know true)
+                        false)))))
 
 ;; If you approach mechanic when there is no story
 ;; could contain some generic dialogue for fun
@@ -34,19 +31,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; Scientist ;;;;;;;;;;;;;;;;;;;;;;;;;;
 (def scientist-know false)
 
-(bind "scientist"
-      (fn []
-          (cond
-              (not scientist-know) (run "scientist-contact")
-              :else (run "scientist-empty"))))
+(bindf "scientist"
+       (cond
+           (not scientist-know) (run "scientist-contact")
+           :else (run "scientist-empty")))
 
-(bind "scientist-contact"
-      (fn []
-          (run (t "[Scientist description]"
-                  (list
-                      (ln "..." nil))))
-          (redef scientist-know true)
-          true))
+(bindf "scientist-contact"
+       (run (t "[Scientist description]"
+               (list
+                   (ln "..." nil))))
+       (redef scientist-know true))
 
 (bind "scientist-empty"
       (t "I approached scientist.."
@@ -58,19 +52,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;; Writer ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (def writer-know false)
 
-(bind "writer"
-      (fn []
-          (cond
-              (not writer-know) (run "writer-contact")
-              :else (run "writer-empty"))))
+(bindf "writer"
+       (cond
+           (not writer-know) (run "writer-contact")
+           :else (run "writer-empty")))
 
-(bind "writer-contact"
-      (fn []
-          (run (t "[writer description]"
-                  (list
-                      (ln "..." nil))))
-          (redef writer-know true)
-          true))
+(bindf "writer-contact"
+       (run (t "[writer description]"
+               (list
+                   (ln "..." nil))))
+       (redef writer-know true))
 
 (bind "writer-empty"
       (t "I approached writer.."
@@ -82,19 +73,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; Policeman ;;;;;;;;;;;;;;;;;;;;;;;;;;
 (def policeman-know false)
 
-(bind "policeman"
-      (fn []
-          (cond
-              (not policeman-know) (run "policeman-contact")
-              :else (run "policeman-empty"))))
+(bindf "policeman"
+       (cond
+           (not policeman-know) (run "policeman-contact")
+           :else (run "policeman-empty")))
 
-(bind "policeman-contact"
-      (fn []
-          (run (t "[Policeman description]"
-                  (list
-                      (ln "..." nil))))
-          (redef policeman-know true)
-          true))
+(bindf "policeman-contact"
+       (run (t "[Policeman description]"
+               (list
+                   (ln "..." nil))))
+       (redef policeman-know true))
 
 (bind "policeman-empty"
       (t "I approached policeman.."
@@ -103,13 +91,26 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;; Places ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(bindf "control"
+       (cond
+           (= story-stage :contact) (run (t "I want to meet people first!.."))
+           (= story-stage :investigate-ship) (run (t "Ok.."))
+           :else (run (t "not implemented"))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(bind "after-meeting"
+      (t "So we decided to look at ship.."))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (bind "_init" (ev "welcome"))
 
-(bind "_dialogexit"
-      (fn []
-          (cond
-              (and mechanic-know scientist-know writer-know policeman-know)
-                (run (t "rain!")))))
+(bindf "_dialogexit"
+       (cond
+           (and mechanic-know scientist-know writer-know policeman-know)
+             (do
+                 (run "after-meeting")
+                 (redef story-stage :investigate-ship))))
 
-(bind "_update"
-      (fn []))
+(bindf "_update")
