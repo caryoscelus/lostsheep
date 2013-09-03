@@ -110,7 +110,7 @@
        (cond
            (and mechanic-know scientist-know writer-know policeman-know)
              (do
-                 (run "after-meeting")
+                 (runafter "after-meeting" )
                  (redef story-stage :investigate-ship))))
 
 (bindf "_update")
