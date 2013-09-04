@@ -68,6 +68,8 @@ public class LostSheepGame {
 //         cabins = World.instance().loadMap("cabins");
         
         player = new Player();
+        Story.instance().addObject("self", player);
+        
         mechanic = new Person("mechanic");
         scientist = new Person("scientist");
         writer = new Person("writer");
