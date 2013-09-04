@@ -96,21 +96,21 @@
 (bindf "control"
        (cond
            (= story-stage :day0-0-contact) (run (t "I want to meet people first!.."))
-           (= story-stage :day0-1-investigate-ship) (run (t "I've entered the room"))
+           (= story-stage :day0-1-investigate-ship) (do (run (t "I've entered the room")) (run "go-control"))
            :else (run (t "not implemented"))))
 
 (bindf "investigation-target"
        (cond
            (= story-stage :day0-0-contact) (log "This should never happen :/")
-           (= story-stage :day0-1-investigation-ship) (run "day0-2-found-control")
+           (= story-stage :day0-1-investigate-ship) (run "day0-2-found-control")
            :else (run (t "not implemented"))))
 
 (bindf "down"
        (cond
            (= story-stage :day0-0-contact) (run (t "I want to meet people first!.."))
-           (= story-stage :day0-1-investigation-ship) (run (t "I want to investigate this level first"))
+           (= story-stage :day0-1-investigate-ship) (run (t "I want to investigate this level first"))
            (= story-stage :day0-2-found-control) (run "day0-3-go-down")
-           (not restrict-moving) (run "godown")
+           (not restrict-moving) (run "go-down")
            :else (run (t "can't go down for unknown reason.."))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -125,8 +125,11 @@
        (def story-stage :day0-2-found-control)
        (run (t "Found control..")))
 
-(bindf "godown"
+(bindf "go-down"
        (change-map "cabins"))
+
+(bindf "go-control"
+       (self-move -1 0))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; called on init
@@ -135,9 +138,9 @@
 ;; called after redef changed something..
 (bindf "_update"
        (cond
-           (= story-stage :investigate-ship)
+           (= story-stage :day0-1-investigate-ship)
              nil
            (and mechanic-know scientist-know writer-know policeman-know)
              (do
                  (runafter "day0-1-investigate-ship" )
-                 (def story-stage :investigate-ship))))
+                 (def story-stage :day0-1-investigate-ship))))
