@@ -31,6 +31,8 @@ import chlorophytum.story.Story;
 import chlorophytum.mapobject.MapObject;
 import chlorophytum.mapobject.MapObjectView;
 
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
+
 public class Person extends MapObject {
     protected float speed = 1;
     
@@ -56,7 +58,13 @@ public class Person extends MapObject {
             float dx = (float) Math.cos(angle*Math.PI/180) * dt * speed;
             float dy = (float) Math.sin(angle*Math.PI/180) * dt * speed;
             
-            move(dx, dy);
+            // check if can move
+            TiledMapTile wallTile = getTile("walls", dx, dy);
+            if (wallTile != null) {
+                // can't move
+            } else {
+                move(dx, dy);
+            }
         }
     }
     
