@@ -50,6 +50,7 @@ public class LostSheepGame {
     public Person policeman;
     
     public ChloroMap deck;
+    public ChloroMap cabins;
     
     protected void spawn (Person person, ChloroMap map, String spawnName) {
         person.moveTo(map);
@@ -63,7 +64,8 @@ public class LostSheepGame {
     public void init () {
         Story.instance().init();
         
-        deck = World.instance().loadMap("data/maps/deck.tmx");
+        deck = World.instance().loadMap("deck");
+//         cabins = World.instance().loadMap("cabins");
         
         player = new Player();
         mechanic = new Person("mechanic");
