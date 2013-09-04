@@ -47,9 +47,9 @@ public class LostSheep extends Game {
         Scripting.init();
         UiManager.instance().loadDefaultSkin();
         
-        LostSheepGame.instance().init();
-        
         setScreen(mapScreen);
+        
+        LostSheepGame.instance().init();
     }
     
     @Override
