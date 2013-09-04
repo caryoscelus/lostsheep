@@ -34,5 +34,6 @@
   <object name="spawn-scientist" x="532" y="617" width="20" height="24"/>
   <object name="spawn-writer" x="154" y="374" width="24" height="26"/>
   <object name="spawn-policeman" x="668" y="609" width="26" height="29"/>
+  <object name="investigation-target" x="327" y="330" width="43" height="32"/>
  </objectgroup>
 </map>

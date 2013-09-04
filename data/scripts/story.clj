@@ -1,6 +1,7 @@
 (ns story)
 
-(def story-stage :contact)
+(def story-stage :day0-0-contact)
+(def restrict-moving false)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; Mechanic ;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -94,23 +95,49 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;; Places ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (bindf "control"
        (cond
-           (= story-stage :contact) (run (t "I want to meet people first!.."))
-           (= story-stage :investigate-ship) (run (t "Ok.."))
+           (= story-stage :day0-0-contact) (run (t "I want to meet people first!.."))
+           (= story-stage :day0-1-investigate-ship) (run (t "I've entered the room"))
            :else (run (t "not implemented"))))
 
+(bindf "investigation-target"
+       (cond
+           (= story-stage :day0-0-contact) (log "This should never happen :/")
+           (= story-stage :day0-1-investigation-ship) (run "day0-2-found-control")
+           :else (run (t "not implemented"))))
+
+(bindf "down"
+       (cond
+           (= story-stage :day0-0-contact) (run (t "I want to meet people first!.."))
+           (= story-stage :day0-1-investigation-ship) (run (t "I want to investigate this level first"))
+           (= story-stage :day0-2-found-control) (run "day0-3-go-down")
+           (not restrict-moving) (run "godown")
+           :else (run (t "can't go down for unknown reason.."))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(bind "after-meeting"
+(bind "welcome"
+      (t "Wilkamen!"))
+
+(bind "day0-1-investigate-ship"
       (t "So we decided to look at ship.."))
 
 
+(bindf "day0-2-found-control"
+       (def story-stage :day0-2-found-control)
+       (run (t "Found control..")))
+
+(bindf "godown"
+       (change-map "cabins"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; called on init
 (bind "_init" (ev "welcome"))
 
+;; called after redef changed something..
 (bindf "_update"
        (cond
            (= story-stage :investigate-ship)
              nil
            (and mechanic-know scientist-know writer-know policeman-know)
              (do
-                 (runafter "after-meeting" )
-                 (redef story-stage :investigate-ship))))
+                 (runafter "day0-1-investigate-ship" )
+                 (def story-stage :investigate-ship))))
