@@ -43,7 +43,7 @@ public class LostSheep extends Game {
     @Override
     public void create () {
         Scripting.init();
-        UiManager.instance().init();
+        UiManager.instance().loadDefaultSkin();
         
         LostSheepGame.instance().init();
         
