@@ -148,12 +148,18 @@
                     Suddenly, my thoughts were interrupted by some sound. Like a human voice!..")))))
 
 (bind "day0-1-investigate-ship"
-      (t "So we decided to look at ship.."))
+      (t "After meeting each other, we decided to have a look at the ship. We need to find a way to contact
+         somebody or to sail to some land.."))
 
 
 (bindf "day0-2-found-control"
        (def story-stage :day0-2-found-control)
-       (run (t "Found control..")))
+       (run (t "We've found some kind of control panel in this room.. However, it doesn't look very nice.
+               In fact, it looks completly broken. Like somebody smashed it with some heavy object. And in
+               some places it is even chopped by axe, which is lying of the floor here.^^
+               
+               What could've happen here?.. And, more importantly, is it possible to repair this control?
+               Though this brings another question: whether engine itself is working or not..")))
 
 (bindf "go-down"
        (change-map "cabins"))
