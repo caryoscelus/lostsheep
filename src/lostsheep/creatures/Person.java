@@ -31,6 +31,7 @@ import chlorophytum.story.Story;
 import chlorophytum.mapobject.MapObject;
 import chlorophytum.mapobject.MapObjectView;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 
 import java.lang.Math;
@@ -59,8 +60,8 @@ public class Person extends MapObject {
         
         processTargetFollowing(dt);
         
-        if (move.x != 0 || move.y != 0) {
-            int angle = ((int) move.angle()/45) * 45;
+        if (wantMove.x != 0 || wantMove.y != 0) {
+            int angle = ((int) wantMove.angle()/45) * 45;
             float dx = (float) Math.cos(angle*Math.PI/180) * dt * speed;
             float dy = (float) Math.sin(angle*Math.PI/180) * dt * speed;
             
@@ -93,12 +94,12 @@ public class Person extends MapObject {
     protected void processTargetFollowing (float dt) {
         if (followingTarget != null) {
             if (position.x != followingTarget.position.x) {
-                move.x = followingTarget.position.x - position.x;
-                move.x /= Math.abs(move.x);
+                wantMove.x = followingTarget.position.x - position.x;
+                wantMove.x /= Math.abs(wantMove.x);
             }
             if (position.y != followingTarget.position.y) {
-                move.y = followingTarget.position.y - position.y;
-                move.y /= Math.abs(move.y);
+                wantMove.y = followingTarget.position.y - position.y;
+                wantMove.y /= Math.abs(wantMove.y);
             }
         }
     }

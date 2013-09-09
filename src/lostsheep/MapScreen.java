@@ -109,30 +109,31 @@ public class MapScreen implements Screen, StoryScreen {
     public void processInput (float dt) {
         float mdx = 0, mdy = 0;
         if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-            mdx += -1*dt;
+            mdx += -1;
         }
         if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            mdx += 1*dt;
+            mdx += 1;
         }
         if (Gdx.input.isKeyPressed(Keys.UP)) {
-            mdy += 1*dt;
+            mdy += 1;
         }
         if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-            mdy += -1*dt;
+            mdy += -1;
         }
         
         Player pl = LostSheepGame.instance().player;
-        pl.move.x = mdx;
-        pl.move.y = mdy;
-        pl.update(dt);
+        pl.wantMove.x = mdx;
+        pl.wantMove.y = mdy;
     }
     
     public void update (float dt) {
+        Player pl = LostSheepGame.instance().player;
+        
         if (!storyStage.show) {
             processInput(dt);
+            pl.onMap.update(dt);
         }
         
-        Player pl = LostSheepGame.instance().player;
         mapStage.setMap(pl.onMap);
         mapStage.setPosition(pl.position);
         mapStage.act(dt);

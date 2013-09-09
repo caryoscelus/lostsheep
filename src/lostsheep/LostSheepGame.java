@@ -71,6 +71,7 @@ public class LostSheepGame {
         Story.instance().addObject("self", player);
         
         mechanic = new Person("mechanic");
+        mechanic.followTarget(player);
         scientist = new Person("scientist");
         writer = new Person("writer");
         policeman = new Person("policeman");
