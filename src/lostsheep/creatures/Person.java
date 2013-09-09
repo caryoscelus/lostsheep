@@ -54,6 +54,17 @@ public class Person extends MapObject {
         return new PersonView (viewData);
     }
     
+    private boolean checkLandC (float dx, float dy) {
+        return getTile("walls", dx, dy) == null;
+    }
+    
+    protected boolean checkLand (float dx, float dy) {
+        return checkLandC(dx-7/16f, dy-7/16f) &&
+               checkLandC(dx-7/16f, dy+7/16f) &&
+               checkLandC(dx+7/16f, dy-7/16f) &&
+               checkLandC(dx+7/16f, dy+7/16f);
+    }
+    
     @Override
     public void update (float dt) {
         super.update(dt);
@@ -66,12 +77,12 @@ public class Person extends MapObject {
             float dy = (float) Math.sin(angle*Math.PI/180) * dt * speed;
             
             // check if can move
-            if (getTile("walls", dx, dy) == null) {
+            if (checkLand(dx, dy)) {
                 move(dx, dy);
             } else {
-                if (getTile("walls", dx, 0) == null) {
+                if (checkLand(dx, 0)) {
                     move(dx*(float)Math.sqrt(2), 0);
-                } else if (getTile("walls", 0, dy) == null) {
+                } else if (checkLand(0, dy)) {
                     move(0, dy*(float)Math.sqrt(2));
                 }
             }
