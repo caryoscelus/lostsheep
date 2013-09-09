@@ -66,11 +66,14 @@ public class Person extends MapObject {
             float dy = (float) Math.sin(angle*Math.PI/180) * dt * speed;
             
             // check if can move
-            TiledMapTile wallTile = getTile("walls", dx, dy);
-            if (wallTile != null) {
-                // can't move
-            } else {
+            if (getTile("walls", dx, dy) == null) {
                 move(dx, dy);
+            } else {
+                if (getTile("walls", dx, 0) == null) {
+                    move(dx*(float)Math.sqrt(2), 0);
+                } else if (getTile("walls", 0, dy) == null) {
+                    move(0, dy*(float)Math.sqrt(2));
+                }
             }
         }
     }
