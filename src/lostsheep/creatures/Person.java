@@ -33,10 +33,14 @@ import chlorophytum.mapobject.MapObjectView;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 
+import java.lang.Math;
+
 public class Person extends MapObject {
     protected float speed = 1;
     
     protected final String name;
+    
+    protected MapObject followingTarget;
     
     public Person (String nm) {
         super();
@@ -52,6 +56,8 @@ public class Person extends MapObject {
     @Override
     public void update (float dt) {
         super.update(dt);
+        
+        processTargetFollowing(dt);
         
         if (move.x != 0 || move.y != 0) {
             int angle = ((int) move.angle()/45) * 45;
@@ -71,5 +77,29 @@ public class Person extends MapObject {
     @Override
     public void clicked () {
         Story.instance().trigger(name, null);
+    }
+    
+    /**
+     * Follow object target.
+     * Person will try to get as close to the object as it can on each update().
+     * TODO: should be moved to more generic place
+     * TODO: limit this by forbidding object overlaps
+     * @param target object to follow; if null, stop following anything
+     */
+    public void followTarget (MapObject target) {
+        followingTarget = target;
+    }
+    
+    protected void processTargetFollowing (float dt) {
+        if (followingTarget != null) {
+            if (position.x != followingTarget.position.x) {
+                move.x = followingTarget.position.x - position.x;
+                move.x /= Math.abs(move.x);
+            }
+            if (position.y != followingTarget.position.y) {
+                move.y = followingTarget.position.y - position.y;
+                move.y /= Math.abs(move.y);
+            }
+        }
     }
 }
