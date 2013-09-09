@@ -93,13 +93,18 @@ public class Person extends MapObject {
     
     protected void processTargetFollowing (float dt) {
         if (followingTarget != null) {
-            if (position.x != followingTarget.position.x) {
-                wantMove.x = followingTarget.position.x - position.x;
+            wantMove.x = followingTarget.position.x - position.x;
+            wantMove.y = followingTarget.position.y - position.y;
+            
+            if (Math.abs(wantMove.x) > 1/256f) {
                 wantMove.x /= Math.abs(wantMove.x);
+            } else {
+                wantMove.x = 0;
             }
-            if (position.y != followingTarget.position.y) {
-                wantMove.y = followingTarget.position.y - position.y;
+            if (Math.abs(wantMove.y) > 1/256f) {
                 wantMove.y /= Math.abs(wantMove.y);
+            } else {
+                wantMove.y = 0;
             }
         }
     }
