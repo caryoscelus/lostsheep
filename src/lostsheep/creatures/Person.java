@@ -59,10 +59,8 @@ public class Person extends MapObject {
     }
     
     protected boolean checkLand (float dx, float dy) {
-        return checkLandC(dx-7/16f, dy-7/16f) &&
-               checkLandC(dx-7/16f, dy+7/16f) &&
-               checkLandC(dx+7/16f, dy-7/16f) &&
-               checkLandC(dx+7/16f, dy+7/16f);
+        return checkLandC(dx-127/256f, dy-127/256f) &&
+               checkLandC(dx+127/256f, dy-127/256f);
     }
     
     @Override
