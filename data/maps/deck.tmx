@@ -3,9 +3,17 @@
  <tileset firstgid="1" name="ph-tiles" tilewidth="32" tileheight="32">
   <image source="ph-tiles.png" width="1024" height="1024"/>
  </tileset>
+ <tileset firstgid="1025" name="ship-tiles" tilewidth="32" tileheight="32">
+  <image source="ship-tiles.png" width="1024" height="1024"/>
+ </tileset>
  <layer name="floor" width="48" height="25">
   <data encoding="base64" compression="zlib">
    eJzt0NEJADAIA9HS/YfuBoUa9Qw04P871/pz2A4etah3Qk+Vvauly1/RQtgzO2i/0kGb1Q7aqnbQRqWDdqkNtEltoD3q/10abqNtUfdk/+tob9Q9xZ8xV3e3v3KO5tvcvH89OwTeBU0=
+  </data>
+ </layer>
+ <layer name="floor 2" width="48" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzl11lOAkEUheFGrsI2QBS2ASK4DUDRbTC7DQWHbTDKNpzQZfjzQEIIHaCrbxWGk3xPp6enk2rPO4yciuelcIZzpJFBAknx712lyLuvkEUOF8jjEgUJ3ttIlffc4g4llFHBNW4kvF4jLZ7bRgf3qKGOBpqi14eVJ571jBe84gGP6KIn+r1JRtw/xgRvmKKPAYZitw+SL+77xgw/+MU7PvApbvptE+VawTFOEEMcERyJ+35Tgu677d4vYe27jX41Wvuu2S/Hxr5r9IvY3Pew+tXY3neTfl1c7fuuvV9c77vp/s+zD/tu8v+wL/te2PG7l+N6303z38//89jad81o7beraJ/fDzV/j312/w==
   </data>
  </layer>
  <layer name="walls" width="48" height="25">
